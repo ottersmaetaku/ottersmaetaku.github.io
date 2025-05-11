@@ -1,13 +1,111 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>習慣家計簿 サポート</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>習慣貯金 サポート</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+    }
+    header img {
+      width: 80px;
+      margin-bottom: 0.5rem;
+    }
+    main {
+      max-width: 600px;
+      margin: -1.5rem auto 2rem;
+      padding: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    a.button {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      margin-top: 1rem;
+    }
+    a.button:hover {
+      background: #1e4bb8;
+    }
+    .screenshots {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .screenshots img {
+      height: 200px;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #666;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>習慣家計簿 サポート</h1>
-  <p>ご不明点やご要望は<br>
-     <a href="mailto:mega.maetaku@gmail.com">こちらのメールアドレス</a> までご連絡ください。</p>
+  <header>
+    <!-- もしアイコンがあるならここに置く -->
+    <!-- <img src="icon.png" alt="習慣貯金 アイコン" /> -->
+    <h1>習慣貯金 サポート</h1>
+    <p>―「目標を価値化して、自分を育てる」</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>お問い合わせ</h2>
+      <p>ご不明点やご要望は以下のメールアドレスまでお気軽にご連絡ください。</p>
+      <a href="mailto:mega.maetaku@gmail.com" class="button">サポートへメール</a>
+    </section>
+
+    <section class="card">
+      <h2>よくある質問 (FAQ)</h2>
+      <p><strong>Q1. サブスクリプションの解約方法は？</strong><br>
+      App Store のサブスクリプション管理から「習慣貯金」を選び、解約してください。</p>
+      <p><strong>Q2. 通知が届きません。</strong><br>
+      iOS の「設定 > 通知」から習慣貯金アプリの通知がオンになっているかご確認ください。</p>
+    </section>
+
+    <section class="card">
+      <h2>アプリ画面イメージ</h2>
+      <div class="screenshots">
+        <img src="screenshot1.png" alt="ホーム画面のスクリーンショット" />
+        <img src="screenshot2.png" alt="Summary画面のスクリーンショット" />
+        <img src="screenshot3.png" alt="Tag登録フォームのスクリーンショット" />
+      </div>
+      <p>その他の画面はアプリ内からご覧いただけます。</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 拓実 前田 | <a href="https://your-domain.com/privacy" target="_blank">プライバシーポリシー</a>
+  </footer>
 </body>
 </html>
+
