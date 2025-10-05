@@ -8,218 +8,139 @@
   <link rel="icon" href="icon.png" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="習慣貯金 – 自己投資の成果を『見える化』できる新感覚アプリ" />
-  <meta property="og:description" content="毎日のやり切った感を実感。目標を価値化して、あなたのモチベーションを高めよう。" />
+  <meta property="og:description" content="毎日のやり切った感を数字で実感。目標を価値化して、あなたのモチベーションを高めよう。" />
   <meta property="og:image" content="HabitBank.png" />
   <meta property="og:locale" content="ja_JP" />
   <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root{
-      --yellow:#ffe24a;
-      --bg:#fffef7;
-      --ink:#1f2937;
-      --muted:#6b7280;
-      --primary:#2563eb;
-      --card:#ffffff;
-      --radius:16px;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --yellow:#ffe24a; --bg:#fffef7; --ink:#1f2937; --muted:#6b7280;
+      --primary:#2563eb; --card:#ffffff; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.08);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{
-      font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-      color:var(--ink);
-      background:var(--bg);
-      line-height:1.6;
+      font-family:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,"Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+      color:var(--ink); background:var(--bg); line-height:1.6;
     }
-    /* ====== Header ====== */
-    .site-header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: saturate(180%) blur(8px);
-      background:rgba(255,255,255,.7);
-      border-bottom:1px solid rgba(0,0,0,.05);
-    }
-    .container{
-      width:min(1120px, 92%);
-      margin:0 auto;
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0;
-    }
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
-    .brand img{width:36px; height:36px; border-radius:10px}
-    .brand span{font-weight:800; letter-spacing:.02em}
-    .cta{
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-    .store-btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px; border-radius:12px; text-decoration:none; color:#fff; font-weight:700;
-      background:#0f172a;
-    }
-    .store-btn.google{background:#1f2937}
-    .store-btn small{font-weight:600; opacity:.9; margin-right:.35em}
-    /* ====== Hero ====== */
+    /* Header (nav) */
+    .site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.75);border-bottom:1px solid rgba(0,0,0,.05)}
+    .container{width:min(1120px,92%);margin:0 auto}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .brand img{width:36px;height:36px;border-radius:10px}
+    .brand span{font-weight:800;letter-spacing:.02em}
+
+    /* Official store badges */
+    .store-badges{display:flex;gap:10px;flex-wrap:wrap}
+    .store-badges a{display:inline-flex; align-items:center}
+    .store-badges img{display:block;height:40px}
+    @media (max-width:480px){ .store-badges img{height:34px} }
+
+    /* Hero = image only */
     .hero{
       background:var(--yellow);
-      padding:48px 0;
+      padding:28px 0 40px;
       border-bottom:1px solid rgba(0,0,0,.08);
     }
-    .hero-grid{
-      display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center;
+    .hero-visual{
+      width:100%;
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      background:#fff;
+      overflow:hidden;
     }
-    .hero-copy h1{
-      margin:0 0 10px; font-size:clamp(28px, 4.2vw, 44px); line-height:1.15;
-      letter-spacing:.02em;
+    .hero-visual img{
+      display:block;
+      width:100%;
+      height:auto; /* 画像そのままを全面に */
     }
-    .lead{
-      color:var(--ink); font-size:clamp(16px,2.2vw,18px); margin:8px 0 18px;
-    }
-    .hero-badges{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px}
-    .hero-img{
-      display:block; width:100%; border-radius:20px; box-shadow:var(--shadow); background:#fff;
-    }
-    /* ====== Features ====== */
+
+    /* Sections */
     .section{padding:56px 0}
-    .section h2{font-size:clamp(22px,3.2vw,28px); margin:0 0 18px}
-    .features{
-      display:grid; gap:16px; grid-template-columns:repeat(3,1fr);
-    }
-    .feature{
-      background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);
-    }
-    .feature h3{margin:0 0 6px; font-size:18px}
+    .section h2{font-size:clamp(22px,3.2vw,28px);margin:0 0 18px}
+    .features{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+    .feature{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .feature h3{margin:0 0 6px;font-size:18px}
     .muted{color:var(--muted)}
-    /* ====== How-to ====== */
-    .steps{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
+    .steps{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
     .step{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-    .step b{display:inline-block; background:var(--primary); color:#fff; padding:4px 10px; border-radius:999px; font-size:12px; margin-bottom:6px}
-    /* ====== FAQ / Contact ====== */
-    details{background:#fff;border-radius:12px; padding:14px 16px; box-shadow:var(--shadow)}
-    summary{cursor:pointer; font-weight:700}
-    .contact{
-      background:#ffffff; border-radius:var(--radius); box-shadow:var(--shadow); padding:18px;
-    }
-    .contact a.btn{
-      display:inline-block; background:var(--primary); color:#fff; text-decoration:none;
-      padding:10px 16px; border-radius:12px; font-weight:700;
-    }
-    /* ====== Footer ====== */
-    footer{
-      padding:28px 0; color:var(--muted); font-size:14px; text-align:center; border-top:1px solid rgba(0,0,0,.06)
-    }
+    .step b{display:inline-block;background:var(--primary);color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;margin-bottom:6px}
+
+    details{background:#fff;border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+    summary{cursor:pointer;font-weight:700}
+    .contact{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .contact a.btn{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;padding:10px 16px;border-radius:12px;font-weight:700}
+
+    footer{padding:28px 0;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid rgba(0,0,0,.06)}
     footer a{color:inherit}
-    /* ====== Responsive ====== */
-    @media (max-width: 900px){
-      .hero-grid{grid-template-columns:1fr}
-      .features{grid-template-columns:1fr 1fr}
-      .steps{grid-template-columns:1fr}
-    }
-    @media (max-width: 560px){
-      .features{grid-template-columns:1fr}
-    }
+
+    @media (max-width:900px){ .features{grid-template-columns:1fr 1fr} .steps{grid-template-columns:1fr} }
+    @media (max-width:560px){ .features{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
 
-  <!-- ===== Header ===== -->
+  <!-- Top nav -->
   <header class="site-header">
     <div class="container">
       <nav class="nav" aria-label="Top Navigation">
         <a class="brand" href="#">
-          <img src="icon.png" alt="習慣貯金 アイコン">
-          <span>習慣貯金</span>
+          <img src="icon.png" alt="習慣貯金 アイコン"><span>習慣貯金</span>
         </a>
-        <div class="cta">
-          <a class="store-btn" href="#" target="_blank" rel="noopener">
-            <small>App Store</small>ダウンロード
+        <!-- ★ 公式バッジ版のダウンロードボタン -->
+        <div class="store-badges">
+          <a href="#" target="_blank" rel="noopener" aria-label="App Store からダウンロード">
+            <img src="appstore-badge-jp.svg" alt="App Store からダウンロード">
           </a>
-          <a class="store-btn google" href="#" target="_blank" rel="noopener">
-            <small>Google Play</small>入手
+          <a href="#" target="_blank" rel="noopener" aria-label="Google Play で手に入れよう">
+            <img src="googleplay-badge-jp.png" alt="Google Play で手に入れよう">
           </a>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <h1>自己投資の成果を『見える化』できる<br/>新感覚アプリ「習慣貯金」</h1>
-        <p class="lead">
-          シンプルな操作で、毎日の「やり切った感」を数字で実感。<br/>
-          目標を価値化して、あなたのモチベーションを高めよう！
-        </p>
-        <div class="hero-badges">
-          <a class="store-btn" href="#" target="_blank" rel="noopener"><small>App Store</small>ダウンロード</a>
-          <a class="store-btn google" href="#" target="_blank" rel="noopener"><small>Google Play</small>入手</a>
-        </div>
-      </div>
-      <div>
-        <img class="hero-img" src="HabitBank.png" alt="習慣貯金 ランディング画像（アプリ画面イメージ）">
+  <!-- Hero: 画像のみ（テキスト重複なし） -->
+  <section class="hero" aria-label="Hero">
+    <div class="container">
+      <div class="hero-visual">
+        <img src="HabitBank.png" alt="習慣貯金 ランディング画像（アプリ紹介）">
       </div>
     </div>
   </section>
 
-  <!-- ===== Features ===== -->
+  <!-- できること -->
   <section class="section">
     <div class="container">
       <h2>できること</h2>
       <div class="features">
-        <article class="feature">
-          <h3>習慣 × マネーで可視化</h3>
-          <p class="muted">行動1つ1つに価値を設定。達成額を積み上げて、やる気を数値で実感。</p>
-        </article>
-        <article class="feature">
-          <h3>シンプル操作</h3>
-          <p class="muted">ワンタップで記録。迷わず続くUIで日々の継続を後押し。</p>
-        </article>
-        <article class="feature">
-          <h3>進捗とグラフ</h3>
-          <p class="muted">直近7日や月ごとの推移を見える化。成長を一目で確認。</p>
-        </article>
+        <article class="feature"><h3>習慣 × マネーで可視化</h3><p class="muted">行動1つ1つに価値を設定。達成額を積み上げて、やる気を数値で実感。</p></article>
+        <article class="feature"><h3>シンプル操作</h3><p class="muted">ワンタップで記録。迷わず続くUIで日々の継続を後押し。</p></article>
+        <article class="feature"><h3>進捗とグラフ</h3><p class="muted">直近7日や月ごとの推移を見える化。成長を一目で確認。</p></article>
       </div>
     </div>
   </section>
 
-  <!-- ===== How it works ===== -->
+  <!-- 使い方 -->
   <section class="section" style="padding-top:0">
     <div class="container">
       <h2>使い方（3ステップ）</h2>
       <div class="steps">
-        <div class="step">
-          <b>STEP 1</b>
-          <h3>タグを作る</h3>
-          <p class="muted">「勉強」「運動」「掃除」など、あなたの行動をタグ化します。</p>
-        </div>
-        <div class="step">
-          <b>STEP 2</b>
-          <h3>価値（額）を決める</h3>
-          <p class="muted">タグごとに達成時の“貯金額”を設定。自己投資を価値化します。</p>
-        </div>
-        <div class="step">
-          <b>STEP 3</b>
-          <h3>達成を記録</h3>
-          <p class="muted">毎日記録して、累計額と達成率をチェック。モチベを維持！</p>
-        </div>
+        <div class="step"><b>STEP 1</b><h3>タグを作る</h3><p class="muted">「勉強」「運動」「掃除」など、あなたの行動をタグ化します。</p></div>
+        <div class="step"><b>STEP 2</b><h3>価値（額）を決める</h3><p class="muted">タグごとに達成時の“貯金額”を設定。自己投資を価値化します。</p></div>
+        <div class="step"><b>STEP 3</b><h3>達成を記録</h3><p class="muted">毎日記録して、累計額と達成率をチェック。モチベを維持！</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FAQ & Contact ===== -->
+  <!-- FAQ / 問い合わせ -->
   <section class="section" style="padding-top:0">
-    <div class="container" style="display:grid; gap:18px; grid-template-columns:2fr 1fr;">
-      <div style="display:grid; gap:12px;">
+    <div class="container" style="display:grid;gap:18px;grid-template-columns:2fr 1fr;">
+      <div style="display:grid;gap:12px;">
         <h2>よくある質問</h2>
-        <details>
-          <summary>通知が届きません</summary>
-          <p class="muted">iOSは「設定 &gt; 通知 &gt; 習慣貯金」で通知をオンにしてください。Androidはアプリ情報の通知を有効化してください。</p>
-        </details>
-        <details>
-          <summary>広告は非表示にできますか？</summary>
-          <p class="muted">初期リリースでは常時バナーを表示します。将来のアップデートで切替機能を検討中です。</p>
-        </details>
+        <details><summary>通知が届きません</summary><p class="muted">iOSは「設定 &gt; 通知 &gt; 習慣貯金」で通知をオンに。Androidはアプリ情報から通知を有効化してください。</p></details>
+        <details><summary>広告は非表示にできますか？</summary><p class="muted">初期リリースでは常時バナーを表示。将来アップデートで切替機能を検討中です。</p></details>
       </div>
       <aside class="contact">
         <h2>お問い合わせ</h2>
@@ -230,21 +151,10 @@
     </div>
   </section>
 
-  <footer>
-    © 2025 Takumi Maeda · <a href="mailto:mega.maetaku@gmail.com">お問い合わせ</a>
-  </footer>
+  <footer>© 2025 Takumi Maeda · <a href="mailto:mega.maetaku@gmail.com">お問い合わせ</a></footer>
 
-  <!-- 構造化データ（任意） -->
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"SoftwareApplication",
-    "name":"習慣貯金",
-    "applicationCategory":"ProductivityApplication",
-    "operatingSystem":"iOS, Android",
-    "image":"HabitBank.png",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"}
-  }
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"習慣貯金","applicationCategory":"ProductivityApplication","operatingSystem":"iOS, Android","image":"HabitBank.png","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"}}
   </script>
 </body>
 </html>
