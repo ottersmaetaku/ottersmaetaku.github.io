@@ -23,40 +23,39 @@
       font-family:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,"Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
       color:var(--ink); background:var(--bg); line-height:1.6;
     }
-    /* Header (nav) */
-    .site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.75);border-bottom:1px solid rgba(0,0,0,.05)}
     .container{width:min(1120px,92%);margin:0 auto}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
-    .brand img{width:36px;height:36px;border-radius:10px}
-    .brand span{font-weight:800;letter-spacing:.02em}
+
+    /* ===== Header (nav) ===== */
+    .site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.78);border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0; flex-wrap:wrap; row-gap:8px;
+    }
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; flex:0 0 auto}
+    .brand img{width:36px; height:36px; border-radius:10px}
+    .brand span{font-weight:800; letter-spacing:.02em; white-space:nowrap;} /* ← 折返し防止 */
 
     /* Official store badges */
-    .store-badges{display:flex;gap:10px;flex-wrap:wrap}
-    .store-badges a{display:inline-flex; align-items:center}
-    .store-badges img{display:block;height:40px}
-    @media (max-width:480px){ .store-badges img{height:34px} }
+    .store-badges{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .store-badges a{display:inline-flex; align-items:center; line-height:0; text-decoration:none}
+    .store-badges img{
+      display:block; height:44px; width:auto; -webkit-user-drag:none; image-rendering:-webkit-optimize-contrast;
+    }
+    @media (max-width:720px){
+      .store-badges{order:2; width:100%; justify-content:flex-start} /* バッジは2段目へ */
+    }
+    @media (max-width:480px){ .store-badges img{height:38px} }
 
-    /* Hero = image only */
-    .hero{
-      background:var(--yellow);
-      padding:28px 0 40px;
-      border-bottom:1px solid rgba(0,0,0,.08);
-    }
-    .hero-visual{
-      width:100%;
-      border-radius:20px;
-      box-shadow:var(--shadow);
-      background:#fff;
-      overflow:hidden;
-    }
-    .hero-visual img{
-      display:block;
-      width:100%;
-      height:auto; /* 画像そのままを全面に */
-    }
+    /* ===== Hero (image only + badges under) ===== */
+    .hero{ background:var(--yellow); padding:28px 0 28px; border-bottom:1px solid rgba(0,0,0,.08); }
+    .hero-visual{ width:100%; border-radius:20px; box-shadow:var(--shadow); background:#fff; overflow:hidden; }
+    .hero-visual img{ display:block; width:100%; height:auto; }
+    .hero-cta{ margin-top:16px; display:flex; justify-content:center; }
+    .hero-cta .store-badges img{ height:52px; }
+    @media (max-width:900px){ .hero-cta .store-badges img{ height:44px; } }
+    @media (max-width:480px){ .hero-cta .store-badges img{ height:38px; } }
 
-    /* Sections */
+    /* ===== Sections ===== */
     .section{padding:56px 0}
     .section h2{font-size:clamp(22px,3.2vw,28px);margin:0 0 18px}
     .features{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
@@ -67,16 +66,24 @@
     .step{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
     .step b{display:inline-block;background:var(--primary);color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;margin-bottom:6px}
 
-    details{background:#fff;border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
-    summary{cursor:pointer;font-weight:700}
-    .contact{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    /* ===== FAQ / Contact (見やすさ改善) ===== */
+    .faq-wrap{display:grid; gap:18px; grid-template-columns:2fr 1fr; align-items:start;}
+    details{background:#fff;border-radius:12px;padding:14px 16px;box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.06)}
+    summary{cursor:pointer;font-weight:700;font-size:16px;outline:none}
+    details p{margin:.5rem 0 0}
+    .contact{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px; position:relative}
     .contact a.btn{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;padding:10px 16px;border-radius:12px;font-weight:700}
+
+    @media (max-width:900px){
+      .features{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr}
+      .faq-wrap{grid-template-columns:1fr} /* ← 狭幅で1カラム化 */
+      details, .contact{padding:16px}
+    }
+    @media (max-width:560px){ .features{grid-template-columns:1fr} }
 
     footer{padding:28px 0;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid rgba(0,0,0,.06)}
     footer a{color:inherit}
-
-    @media (max-width:900px){ .features{grid-template-columns:1fr 1fr} .steps{grid-template-columns:1fr} }
-    @media (max-width:560px){ .features{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
@@ -88,8 +95,7 @@
         <a class="brand" href="#">
           <img src="icon.png" alt="習慣貯金 アイコン"><span>習慣貯金</span>
         </a>
-        <!-- ★ 公式バッジ版のダウンロードボタン -->
-        <div class="store-badges">
+        <div class="store-badges" aria-label="ダウンロード">
           <a href="#" target="_blank" rel="noopener" aria-label="App Store からダウンロード">
             <img src="appstore-badge-jp.svg" alt="App Store からダウンロード">
           </a>
@@ -101,11 +107,22 @@
     </div>
   </header>
 
-  <!-- Hero: 画像のみ（テキスト重複なし） -->
+  <!-- Hero -->
   <section class="hero" aria-label="Hero">
     <div class="container">
       <div class="hero-visual">
         <img src="HabitBank.png" alt="習慣貯金 ランディング画像（アプリ紹介）">
+      </div>
+      <!-- ④ Heroにも公式バッジ -->
+      <div class="hero-cta">
+        <div class="store-badges" aria-label="ダウンロード">
+          <a href="#" target="_blank" rel="noopener" aria-label="App Store からダウンロード">
+            <img src="appstore-badge-jp.svg" alt="App Store からダウンロード">
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Google Play で手に入れよう">
+            <img src="googleplay-badge-jp.png" alt="Google Play で手に入れよう">
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -136,7 +153,7 @@
 
   <!-- FAQ / 問い合わせ -->
   <section class="section" style="padding-top:0">
-    <div class="container" style="display:grid;gap:18px;grid-template-columns:2fr 1fr;">
+    <div class="container faq-wrap">
       <div style="display:grid;gap:12px;">
         <h2>よくある質問</h2>
         <details><summary>通知が届きません</summary><p class="muted">iOSは「設定 &gt; 通知 &gt; 習慣貯金」で通知をオンに。Androidはアプリ情報から通知を有効化してください。</p></details>
