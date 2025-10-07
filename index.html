@@ -16,8 +16,14 @@
     :root{
       --yellow:#ffe24a; --bg:#fffef7; --ink:#1f2937; --muted:#6b7280;
       --primary:#2563eb; --card:#ffffff; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.08);
-      --badge-h-header: clamp(28px, 4.5vw, 44px); /* ①ヘッダー用 高さを可変で維持（横に並べ続ける） */
-      --badge-h-hero: clamp(32px, 5.2vw, 56px);   /* ④Hero下のバッジを少し大きめに */
+      --badge-h-header: clamp(28px, 4.5vw, 44px); /* 既存（未使用でもOK） */
+      --badge-h-hero:   clamp(32px, 5.2vw, 56px); /* 既存（未使用でもOK） */
+
+      /* ▼追加：Appleを大きめ／Googleを小さめにする個別サイズ */
+      --badge-apple-header: clamp(34px, 4.5vw, 44px);
+      --badge-play-header:  clamp(28px, 4.2vw, 38px);
+      --badge-apple-hero:   clamp(42px, 5.4vw, 58px);
+      --badge-play-hero:    clamp(34px, 5.0vw, 48px);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
@@ -36,26 +42,31 @@
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:10px 0; gap:14px; flex-wrap:nowrap;  /* ← ②常に横並び */
+      padding:10px 0; gap:14px; flex-wrap:nowrap;
     }
     .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; white-space:nowrap;}
     .brand img{width:36px; height:36px; border-radius:10px}
     .brand span{font-weight:800; letter-spacing:.02em}
 
-    /* Official store badges（公式バッジは画像そのまま・高さだけ指定） */
+    /* Official store badges */
     .store-badges{display:flex; gap:10px; align-items:center; flex:0 1 auto; min-width:0}
     .store-badges a{display:inline-flex; align-items:center; text-decoration:none; line-height:0}
     .store-badges img{
-      display:block; height:var(--badge-h-header); width:auto;
+      display:block; width:auto;               /* ←共通は幅のみ。高さは個別クラスで指定 */
       -webkit-user-drag:none; image-rendering:-webkit-optimize-contrast;
     }
+    /* ▼個別サイズ（ヘッダー） */
+    .store-badges .badge--apple{ height: var(--badge-apple-header); }
+    .store-badges .badge--play{  height: var(--badge-play-header); }
 
-    /* ===== Hero (image only + badges under) ===== */
+    /* ===== Hero ===== */
     .hero{ background:var(--yellow); padding:28px 0 28px; border-bottom:1px solid rgba(0,0,0,.08); }
     .hero-visual{ width:100%; border-radius:20px; box-shadow:var(--shadow); background:#fff; overflow:hidden; }
     .hero-visual img{ display:block; width:100%; height:auto; }
     .hero-cta{ margin-top:16px; display:flex; justify-content:center; }
-    .hero-cta .store-badges img{ height:var(--badge-h-hero); }
+    /* ▼個別サイズ（Hero下） */
+    .hero-cta .store-badges .badge--apple{ height: var(--badge-apple-hero); }
+    .hero-cta .store-badges .badge--play{  height: var(--badge-play-hero); }
 
     /* ===== Sections ===== */
     .section{padding:56px 0}
@@ -68,7 +79,7 @@
     .step{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
     .step b{display:inline-block;background:var(--primary);color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;margin-bottom:6px}
 
-    /* ===== FAQ / Contact（前回のまま良好） ===== */
+    /* ===== FAQ / Contact ===== */
     .faq-wrap{display:grid; gap:18px; grid-template-columns:2fr 1fr; align-items:start;}
     details{background:#fff;border-radius:12px;padding:14px 16px;box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.06)}
     summary{cursor:pointer;font-weight:700;font-size:16px;outline:none}
@@ -94,13 +105,12 @@
     <div class="container">
       <nav class="nav" aria-label="Top Navigation">
         <a class="brand" href="#"><img src="icon.png" alt="習慣貯金 アイコン"><span>習慣貯金</span></a>
-        <!-- ①② ヘッダー右サイドに常時表示（縮小してでも横並び維持） -->
         <div class="store-badges" aria-label="ダウンロード">
           <a href="#" target="_blank" rel="noopener" aria-label="App Store からダウンロード">
-            <img src="appstore-badge-jp.svg" alt="App Store からダウンロード">
+            <img class="badge--apple" src="appstore-badge-jp.svg" alt="App Store からダウンロード">
           </a>
           <a href="#" target="_blank" rel="noopener" aria-label="Google Play で手に入れよう">
-            <img src="googleplay-badge-jp.svg" alt="Google Play で手に入れよう">
+            <img class="badge--play" src="googleplay-badge-jp.svg" alt="Google Play で手に入れよう">
           </a>
         </div>
       </nav>
@@ -113,14 +123,13 @@
       <div class="hero-visual">
         <img src="HabitBank.png" alt="習慣貯金 ランディング画像（アプリ紹介）">
       </div>
-      <!-- ④ Hero下にも公式バッジ（大きめ） -->
       <div class="hero-cta">
         <div class="store-badges" aria-label="ダウンロード">
           <a href="#" target="_blank" rel="noopener" aria-label="App Store からダウンロード">
-            <img src="appstore-badge-jp.svg" alt="App Store からダウンロード">
+            <img class="badge--apple" src="appstore-badge-jp.svg" alt="App Store からダウンロード">
           </a>
           <a href="#" target="_blank" rel="noopener" aria-label="Google Play で手に入れよう">
-            <img src="googleplay-badge-jp.svg" alt="Google Play で手に入れよう">
+            <img class="badge--play" src="googleplay-badge-jp.svg" alt="Google Play で手に入れよう">
           </a>
         </div>
       </div>
@@ -151,7 +160,7 @@
     </div>
   </section>
 
-  <!-- FAQ / 問い合わせ（前回のまま） -->
+  <!-- FAQ / 問い合わせ -->
   <section class="section" style="padding-top:0">
     <div class="container faq-wrap">
       <div style="display:grid;gap:12px;">
